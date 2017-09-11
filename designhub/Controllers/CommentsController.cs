@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using designhub.Data;
 using designhub.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace designhub.Controllers
 {
@@ -14,10 +15,15 @@ namespace designhub.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-        public CommentsController(ApplicationDbContext context)
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public CommentsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
-            _context = context;    
+            _context = context;
+            _userManager = userManager;
         }
+
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Comments
         public async Task<IActionResult> Index()

@@ -5,13 +5,12 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using designhub.Data;
 
-namespace designhub.Data.Migrations
+namespace designhub.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170911181454_model-update")]
-    partial class modelupdate
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")
@@ -78,7 +77,9 @@ namespace designhub.Data.Migrations
                     b.Property<int>("CommentID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("FileID");
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<int>("DocumentID");
 
                     b.Property<string>("Message")
                         .IsRequired();
@@ -88,40 +89,40 @@ namespace designhub.Data.Migrations
 
                     b.HasKey("CommentID");
 
-                    b.HasIndex("FileID");
+                    b.HasIndex("DocumentID");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Comment");
                 });
 
-            modelBuilder.Entity("designhub.Models.File", b =>
+            modelBuilder.Entity("designhub.Models.Document", b =>
                 {
-                    b.Property<int>("FileID")
+                    b.Property<int>("DocumentID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("DateCreated");
 
-                    b.Property<int>("FileGroupID");
+                    b.Property<int>("DocumentGroupID");
 
-                    b.Property<string>("FilePath")
+                    b.Property<string>("DocumentPath")
                         .IsRequired();
 
                     b.Property<string>("UserId")
                         .IsRequired();
 
-                    b.HasKey("FileID");
+                    b.HasKey("DocumentID");
 
-                    b.HasIndex("FileGroupID");
+                    b.HasIndex("DocumentGroupID");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("File");
+                    b.ToTable("Document");
                 });
 
-            modelBuilder.Entity("designhub.Models.FileGroup", b =>
+            modelBuilder.Entity("designhub.Models.DocumentGroup", b =>
                 {
-                    b.Property<int>("FileGroupID")
+                    b.Property<int>("DocumentGroupID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("DateCreated");
@@ -129,9 +130,9 @@ namespace designhub.Data.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.HasKey("FileGroupID");
+                    b.HasKey("DocumentGroupID");
 
-                    b.ToTable("FileGroup");
+                    b.ToTable("DocumentGroup");
                 });
 
             modelBuilder.Entity("designhub.Models.Project", b =>
@@ -154,24 +155,24 @@ namespace designhub.Data.Migrations
                     b.ToTable("Project");
                 });
 
-            modelBuilder.Entity("designhub.Models.ProjectFileGroup", b =>
+            modelBuilder.Entity("designhub.Models.ProjectDocumentGroup", b =>
                 {
-                    b.Property<int>("ProjectFileGroupID")
+                    b.Property<int>("ProjectDocumentGroupID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("DateCreated");
 
-                    b.Property<int>("FileGroupID");
+                    b.Property<int>("DocumentGroupID");
 
                     b.Property<int>("ProjectID");
 
-                    b.HasKey("ProjectFileGroupID");
+                    b.HasKey("ProjectDocumentGroupID");
 
-                    b.HasIndex("FileGroupID");
+                    b.HasIndex("DocumentGroupID");
 
                     b.HasIndex("ProjectID");
 
-                    b.ToTable("ProjectFileGroup");
+                    b.ToTable("ProjectDocumentGroup");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
@@ -283,9 +284,9 @@ namespace designhub.Data.Migrations
 
             modelBuilder.Entity("designhub.Models.Comment", b =>
                 {
-                    b.HasOne("designhub.Models.File", "File")
+                    b.HasOne("designhub.Models.Document", "Document")
                         .WithMany()
-                        .HasForeignKey("FileID")
+                        .HasForeignKey("DocumentID")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("designhub.Models.ApplicationUser", "User")
@@ -294,15 +295,15 @@ namespace designhub.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("designhub.Models.File", b =>
+            modelBuilder.Entity("designhub.Models.Document", b =>
                 {
-                    b.HasOne("designhub.Models.FileGroup", "FileGroup")
+                    b.HasOne("designhub.Models.DocumentGroup", "DocumentGroup")
                         .WithMany()
-                        .HasForeignKey("FileGroupID")
+                        .HasForeignKey("DocumentGroupID")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("designhub.Models.ApplicationUser", "User")
-                        .WithMany("File")
+                        .WithMany("Document")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -315,15 +316,15 @@ namespace designhub.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("designhub.Models.ProjectFileGroup", b =>
+            modelBuilder.Entity("designhub.Models.ProjectDocumentGroup", b =>
                 {
-                    b.HasOne("designhub.Models.FileGroup", "FileGroup")
-                        .WithMany("ProjectFileGroup")
-                        .HasForeignKey("FileGroupID")
+                    b.HasOne("designhub.Models.DocumentGroup", "DocumentGroup")
+                        .WithMany("ProjectDocumentGroup")
+                        .HasForeignKey("DocumentGroupID")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("designhub.Models.Project", "Project")
-                        .WithMany("ProjectFileGroup")
+                        .WithMany("ProjectDocumentGroup")
                         .HasForeignKey("ProjectID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

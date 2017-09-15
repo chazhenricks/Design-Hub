@@ -7,24 +7,17 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using designhub.Data;
 using designhub.Models;
-using Microsoft.AspNetCore.Identity;
 
 namespace designhub.Controllers
 {
     public class ProjectsController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-
         private readonly ApplicationDbContext _context;
 
-        public ProjectsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        public ProjectsController(ApplicationDbContext context)
         {
-            _userManager = userManager;
             _context = context;    
         }
-
-        // This task retrieves the currently authenticated user
-        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Projects
         public async Task<IActionResult> Index()
@@ -61,23 +54,10 @@ namespace designhub.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Project project)
+        public async Task<IActionResult> Create([Bind("ProjectID,Name,DateCreated")] Project project)
         {
-           //Removes the user from the modelState validatior
-            ModelState.Remove("User");
-
-            //Sets date created to right now
-            project.DateCreated = DateTime.Now;
-
             if (ModelState.IsValid)
             {
-                //if everyhing else passes, add user back in. 
-                var user = await GetCurrentUserAsync();
-                project.User = user;
-
-                //Set date time to current date/time
-               
-
                 _context.Add(project);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");

@@ -16,7 +16,7 @@
                     @Html.DisplayNameFor(model => model.Message)
                 </th>
             <th>
-                @Html.DisplayNameFor(model => model.File)
+                @Html.DisplayNameFor(model => model.Document)
             </th>
             <th></th>
         </tr>
@@ -28,7 +28,7 @@
                 @Html.DisplayFor(modelItem => item.Message)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.File.FilePath)
+                @Html.DisplayFor(modelItem => item.Document.FilePath)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.CommentID">Edit</a> |

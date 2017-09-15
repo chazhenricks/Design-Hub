@@ -22,6 +22,6 @@ namespace designhub.Models
         [Required]
         public virtual ApplicationUser User { get; set; }
 
-        public virtual ICollection<ProjectFileGroup> ProjectFileGroup { get; set; }
+        public virtual ICollection<ProjectDocumentGroup> ProjectDocumentGroup { get; set; }
     }
 }

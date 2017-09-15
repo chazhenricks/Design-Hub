@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace designhub.Models
 {
-    public class File
+    public class Document
     {
         [Key]
-        public int FileID { get; set; }
+        public int DocumentID { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
@@ -17,15 +17,15 @@ namespace designhub.Models
         public DateTime DateCreated { get; set; }
 
         [Required]
-        public string FilePath { get; set; }
+        public string DocumentPath { get; set; }
 
         [Required]
         public virtual ApplicationUser User { get; set; }
 
         [Required]
-        public int FileGroupID { get; set; }
+        public int DocumentGroupID { get; set; }
 
-        public FileGroup FileGroup { get; set; }
+        public DocumentGroup DocumentGroup { get; set; }
 
     }
 }

@@ -48,7 +48,7 @@ namespace designhub.Controllers
         // GET: Documents/Create
         public IActionResult Create()
         {
-            ViewData["DocumentGroupID"] = new SelectList(_context.Set<DocumentGroup>(), "DocumentGroupID", "Name");
+            ViewData["DocumentGroupID"] = new SelectList(_context.DocumentGroup, "DocumentGroupID", "Name");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace designhub.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DocumentID,DateCreated,FilePath,DocumentGroupID")] Document document)
+        public async Task<IActionResult> Create([Bind("DocumentID,DateCreated,DocumentPath,DocumentGroupID")] Document document)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace designhub.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["DocumentGroupID"] = new SelectList(_context.Set<DocumentGroup>(), "DocumentGroupID", "Name", document.DocumentGroupID);
+            ViewData["DocumentGroupID"] = new SelectList(_context.DocumentGroup, "DocumentGroupID", "Name", document.DocumentGroupID);
             return View(document);
         }
 
@@ -82,7 +82,7 @@ namespace designhub.Controllers
             {
                 return NotFound();
             }
-            ViewData["DocumentGroupID"] = new SelectList(_context.Set<DocumentGroup>(), "DocumentGroupID", "Name", document.DocumentGroupID);
+            ViewData["DocumentGroupID"] = new SelectList(_context.DocumentGroup, "DocumentGroupID", "Name", document.DocumentGroupID);
             return View(document);
         }
 
@@ -91,7 +91,7 @@ namespace designhub.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DocumentID,DateCreated,FilePath,DocumentGroupID")] Document document)
+        public async Task<IActionResult> Edit(int id, [Bind("DocumentID,DateCreated,DocumentPath,DocumentGroupID")] Document document)
         {
             if (id != document.DocumentID)
             {
@@ -118,7 +118,7 @@ namespace designhub.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["DocumentGroupID"] = new SelectList(_context.Set<DocumentGroup>(), "DocumentGroupID", "Name", document.DocumentGroupID);
+            ViewData["DocumentGroupID"] = new SelectList(_context.DocumentGroup, "DocumentGroupID", "Name", document.DocumentGroupID);
             return View(document);
         }
 

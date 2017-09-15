@@ -19,10 +19,10 @@
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="FilePath" class="col-md-2 control-label"></label>
+            <label asp-for="DocumentPath" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="FilePath" class="form-control" />
-                <span asp-validation-for="FilePath" class="text-danger"></span>
+                <input asp-for="DocumentPath" class="form-control" />
+                <span asp-validation-for="DocumentPath" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
@@ -43,6 +43,3 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}

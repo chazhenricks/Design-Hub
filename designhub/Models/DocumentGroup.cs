@@ -20,6 +20,9 @@ namespace designhub.Models
         [Required]
         public string Name { get; set; }
 
+        [Required]
+
+
         public virtual ICollection<ProjectDocumentGroup> ProjectDocumentGroup { get; set; }
     }
 }

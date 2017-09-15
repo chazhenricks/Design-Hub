@@ -87,13 +87,17 @@ namespace designhub.Controllers
                 */
                 var user = await GetCurrentUserAsync();
 
+
+                viewModel.Document = new Document();
+
+
                 viewModel.Document.User = user;
                 viewModel.Document.DateCreated = DateTime.Now;
 
                 if (viewModel.NewDocument != null)
                 {
                     string directory = Directory.GetCurrentDirectory();
-                    string localSavePath = directory + @"\wwwroot\documents\" + viewModel.Name;
+                    string localSavePath = directory + @"\wwwroot\documents\" + viewModel.NewDocument.FileName;
                     string dbPath = "/documents/" + viewModel.NewDocument.FileName;
                     using (var stream = new FileStream(localSavePath, FileMode.Create))
                     {

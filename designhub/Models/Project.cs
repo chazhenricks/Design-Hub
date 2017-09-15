@@ -16,7 +16,7 @@ namespace designhub.Models
 
         
         [DataType(DataType.Date)]
-        [Display(Name = "Date")]
+        [Display(Name = "Last Updated")]
         public DateTime DateCreated { get; set; }
 
         [Required]

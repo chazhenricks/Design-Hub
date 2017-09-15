@@ -7,17 +7,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using designhub.Data;
 using designhub.Models;
+using designhub.Models.DocumentViewModels;
+using Microsoft.AspNetCore.Identity;
+using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace designhub.Controllers
 {
     public class DocumentsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public DocumentsController(ApplicationDbContext context)
+        public DocumentsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
-            _context = context;    
+            _context = context;
+            _userManager = userManager;
         }
+
+        // This task retrieves the currently authenticated user
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Documents
         public async Task<IActionResult> Index()
@@ -25,6 +34,7 @@ namespace designhub.Controllers
             var applicationDbContext = _context.Document.Include(d => d.DocumentGroup);
             return View(await applicationDbContext.ToListAsync());
         }
+
 
         // GET: Documents/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -56,17 +66,53 @@ namespace designhub.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DocumentID,DateCreated,DocumentPath,DocumentGroupID")] Document document)
+        public async Task<IActionResult> Create(CreateDocumentViewModel viewModel)
+
         {
+
+            // Remove the user from the model validation because it is
+            // not information posted in the form
+
+            ModelState.Remove("Document.User");
+
+
             if (ModelState.IsValid)
             {
-                _context.Add(document);
+                /*
+                    If all other properties validate, then grab the 
+                    currently authenticated user and assign it to the 
+                    product before adding it to the db _context
+                */
+                var user = await GetCurrentUserAsync();
+
+                viewModel.Document.User = user;
+                viewModel.Document.DateCreated = DateTime.Now;
+
+                if (viewModel.NewDocument != null)
+                {
+                    string directory = Directory.GetCurrentDirectory();
+                    string localSavePath = directory + @"\wwwroot\documents\" + viewModel.Name;
+                    string dbPath = "/documents/" + viewModel.NewDocument.FileName;
+                    using (var stream = new FileStream(localSavePath, FileMode.Create))
+                    {
+                        await viewModel.NewDocument.CopyToAsync(stream);
+                    }
+                    viewModel.Document.DocumentPath = dbPath;
+                }
+
+
+
+
+                _context.Add(viewModel.Document);
+
+
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["DocumentGroupID"] = new SelectList(_context.DocumentGroup, "DocumentGroupID", "Name", document.DocumentGroupID);
-            return View(document);
+            ViewData["DocumentGroupID"] = new SelectList(_context.DocumentGroup, "DocumentGroupID", "Name", viewModel.Document.DocumentGroupID);
+            return View(viewModel);
         }
 
         // GET: Documents/Edit/5

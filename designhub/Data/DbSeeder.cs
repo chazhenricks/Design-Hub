@@ -157,92 +157,110 @@ namespace designhub.Data
                     new Document{
                         DateCreated = new DateTime(2017, 03, 28),
                         DocumentPath = "http://localhost:5000/Document/getpicture",
-                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "Walmart CEO Photo").DocumentGroupID
+                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "Walmart CEO Photo").DocumentGroupID,
+                        User = userStore.Users.First<ApplicationUser>(user => user.UserName == "a@a.com")
                     },
                     new Document{
                         DateCreated = new DateTime(2017, 03, 29),
                         DocumentPath = "Path/To/Document",
-                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "Walmart CEO Photo").DocumentGroupID
+                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "Walmart CEO Photo").DocumentGroupID,
+                        User = userStore.Users.First<ApplicationUser>(user => user.UserName == "a@a.com")
                     },
                     new Document{
                         DateCreated = new DateTime(2017, 03, 30),
                         DocumentPath = "Path/To/Document",
-                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "Walmart CEO Photo").DocumentGroupID
+                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "Walmart CEO Photo").DocumentGroupID,
+                        User = userStore.Users.First<ApplicationUser>(user => user.UserName == "a@a.com")
                     },
                     new Document{
                         DateCreated = new DateTime(2017, 03, 28),
                         DocumentPath = "Path/To/Document",
-                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "Walmart Speech").DocumentGroupID
+                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "Walmart Speech").DocumentGroupID,
+                        User = userStore.Users.First<ApplicationUser>(user => user.UserName == "a@a.com")
                     },
                     new Document{
                         DateCreated = new DateTime(2017, 03, 29),
                         DocumentPath = "Path/To/Document",
-                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "Walmart Speech").DocumentGroupID
+                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "Walmart Speech").DocumentGroupID,
+                        User = userStore.Users.First<ApplicationUser>(user => user.UserName == "a@a.com")
                     },
                     new Document{
                         DateCreated = new DateTime(2017, 03, 30),
                         DocumentPath = "Path/To/Document",
-                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "Walmart Speech").DocumentGroupID
+                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "Walmart Speech").DocumentGroupID,
+                        User = userStore.Users.First<ApplicationUser>(user => user.UserName == "a@a.com")
                     },
                     new Document{
                         DateCreated = new DateTime(2017, 03, 28),
                         DocumentPath = "Path/To/Document",
-                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "LP CEO Photo").DocumentGroupID
+                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "LP CEO Photo").DocumentGroupID,
+                        User = userStore.Users.First<ApplicationUser>(user => user.UserName == "b@b.com")
                     },
                     new Document{
                         DateCreated = new DateTime(2017, 03, 29),
                         DocumentPath = "Path/To/Document",
-                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "LP CEO Photo").DocumentGroupID
+                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "LP CEO Photo").DocumentGroupID,
+                        User = userStore.Users.First<ApplicationUser>(user => user.UserName == "b@b.com")
                     },
                     new Document{
                         DateCreated = new DateTime(2017, 03, 30),
                         DocumentPath = "Path/To/Document",
-                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "LP CEO Photo").DocumentGroupID
+                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "LP CEO Photo").DocumentGroupID,
+                        User = userStore.Users.First<ApplicationUser>(user => user.UserName == "b@b.com")
                     },
                     new Document{
                         DateCreated = new DateTime(2017, 03, 28),
                         DocumentPath = "Path/To/Document",
-                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "LP CEO Speech").DocumentGroupID
+                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "LP CEO Speech").DocumentGroupID,
+                        User = userStore.Users.First<ApplicationUser>(user => user.UserName == "b@b.com")
                     },
                     new Document{
                         DateCreated = new DateTime(2017, 03, 29),
                         DocumentPath = "Path/To/Document",
-                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "LP CEO Speech").DocumentGroupID
+                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "LP CEO Speech").DocumentGroupID,
+                        User = userStore.Users.First<ApplicationUser>(user => user.UserName == "b@b.com")
                     },
                     new Document{
                         DateCreated = new DateTime(2017, 03, 30),
                         DocumentPath = "Path/To/Document",
-                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "LP CEO Speech").DocumentGroupID
+                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "LP CEO Speech").DocumentGroupID,
+                        User = userStore.Users.First<ApplicationUser>(user => user.UserName == "b@b.com")
                     },
                     new Document{
                         DateCreated = new DateTime(2017, 03, 28),
                         DocumentPath = "Path/To/Document",
-                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "Exxon CEO Photo").DocumentGroupID
+                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "Exxon CEO Photo").DocumentGroupID,
+                        User = userStore.Users.First<ApplicationUser>(user => user.UserName == "c@c.com")
                     },
                     new Document{
                         DateCreated = new DateTime(2017, 03, 29),
                         DocumentPath = "Path/To/Document",
-                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "Exxon CEO Photo").DocumentGroupID
+                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "Exxon CEO Photo").DocumentGroupID,
+                        User = userStore.Users.First<ApplicationUser>(user => user.UserName == "c@c.com")
                     },
                     new Document{
                         DateCreated = new DateTime(2017, 03, 30),
                         DocumentPath = "Path/To/Document",
-                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "Exxon CEO Photo").DocumentGroupID
+                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "Exxon CEO Photo").DocumentGroupID,
+                        User = userStore.Users.First<ApplicationUser>(user => user.UserName == "c@c.com")
                     },
                     new Document{
                         DateCreated = new DateTime(2017, 03, 28),
                         DocumentPath = "Path/To/Document",
-                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "Exxon Pitch Proposal").DocumentGroupID
+                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "Exxon Pitch Proposal").DocumentGroupID,
+                        User = userStore.Users.First<ApplicationUser>(user => user.UserName == "c@c.com")
                     },
                     new Document{
                         DateCreated = new DateTime(2017, 03, 29),
                         DocumentPath = "Path/To/Document",
-                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "Exxon Pitch Proposal").DocumentGroupID
+                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "Exxon Pitch Proposal").DocumentGroupID,
+                        User = userStore.Users.First<ApplicationUser>(user => user.UserName == "c@c.com")
                     },
                     new Document{
                         DateCreated = new DateTime(2017, 03, 30),
                         DocumentPath = "Path/To/Document",
-                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "Exxon Pitch Proposal").DocumentGroupID
+                        DocumentGroupID = documentGroups.Single(fg => fg.Name == "Exxon Pitch Proposal").DocumentGroupID,
+                        User = userStore.Users.First<ApplicationUser>(user => user.UserName == "c@c.com")
                     }
                 };
                 // Adds each new Document into the context
@@ -261,12 +279,14 @@ namespace designhub.Data
                     new Comment{
                         Message = "Change one thing",
                         DateCreated = new DateTime(2017, 03, 30),
-                        DocumentID = documents.Single(f => f.DocumentID == 1).DocumentID
+                        DocumentID = documents.Single(f => f.DocumentID == 1).DocumentID,
+                        User = userStore.Users.First<ApplicationUser>(user => user.UserName == "c@c.com")
                     },
                     new Comment{
                         Message = "Great!",
                         DateCreated = new DateTime(2017, 03, 31),
-                        DocumentID = documents.Single(f => f.DocumentID == 16).DocumentID
+                        DocumentID = documents.Single(f => f.DocumentID == 16).DocumentID,
+                        User = userStore.Users.First<ApplicationUser>(user => user.UserName == "c@c.com")
                     }
                 };
 

@@ -22,7 +22,7 @@ namespace designhub.Controllers
         // GET: Comments
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Comment.Include(c => c.File);
+            var applicationDbContext = _context.Comment.Include(c => c.Document);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -35,7 +35,7 @@ namespace designhub.Controllers
             }
 
             var comment = await _context.Comment
-                .Include(c => c.File)
+                .Include(c => c.Document)
                 .SingleOrDefaultAsync(m => m.CommentID == id);
             if (comment == null)
             {
@@ -48,7 +48,7 @@ namespace designhub.Controllers
         // GET: Comments/Create
         public IActionResult Create()
         {
-            ViewData["FileID"] = new SelectList(_context.File, "FileID", "FilePath");
+            ViewData["DocumentID"] = new SelectList(_context.Document, "DocumentID", "FilePath");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace designhub.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CommentID,Message,FileID")] Comment comment)
+        public async Task<IActionResult> Create([Bind("CommentID,Message,DocumentID")] Comment comment)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace designhub.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["FileID"] = new SelectList(_context.File, "FileID", "FilePath", comment.FileID);
+            ViewData["DocumentID"] = new SelectList(_context.Document, "DocumentID", "FilePath", comment.DocumentID);
             return View(comment);
         }
 
@@ -82,7 +82,7 @@ namespace designhub.Controllers
             {
                 return NotFound();
             }
-            ViewData["FileID"] = new SelectList(_context.File, "FileID", "FilePath", comment.FileID);
+            ViewData["DocumentID"] = new SelectList(_context.Document, "DocumentID", "FilePath", comment.DocumentID);
             return View(comment);
         }
 
@@ -91,7 +91,7 @@ namespace designhub.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CommentID,Message,FileID")] Comment comment)
+        public async Task<IActionResult> Edit(int id, [Bind("CommentID,Message,DocumentID")] Comment comment)
         {
             if (id != comment.CommentID)
             {
@@ -118,7 +118,7 @@ namespace designhub.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["FileID"] = new SelectList(_context.File, "FileID", "FilePath", comment.FileID);
+            ViewData["DocumentID"] = new SelectList(_context.Document, "DocumentID", "FilePath", comment.DocumentID);
             return View(comment);
         }
 
@@ -131,7 +131,7 @@ namespace designhub.Controllers
             }
 
             var comment = await _context.Comment
-                .Include(c => c.File)
+                .Include(c => c.Document)
                 .SingleOrDefaultAsync(m => m.CommentID == id);
             if (comment == null)
             {

@@ -14,7 +14,7 @@ namespace designhub.Models
         [Required]
         public string Name { get; set; }
 
-        [Required]
+        
         [DataType(DataType.Date)]
         [Display(Name = "Date")]
         public DateTime DateCreated { get; set; }
@@ -22,6 +22,6 @@ namespace designhub.Models
         [Required]
         public virtual ApplicationUser User { get; set; }
 
-        public virtual ICollection<ProjectFileGroup> ProjectFileGroup { get; set; }
+        public virtual ICollection<ProjectDocumentGroup> ProjectDocumentGroup { get; set; }
     }
 }

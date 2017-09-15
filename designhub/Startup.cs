@@ -59,6 +59,7 @@ namespace designhub
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+            DbSeeder.Initialize(app.ApplicationServices);
 
             if (env.IsDevelopment())
             {

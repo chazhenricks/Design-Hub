@@ -23,10 +23,16 @@ namespace designhub.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-        public DbSet<designhub.Models.File> File { get; set; }
+        public DbSet<Document> Document { get; set; }
 
-        public DbSet<designhub.Models.Comment> Comment { get; set; }
+        public DbSet<Comment> Comment { get; set; }
 
-        public DbSet<designhub.Models.Project> Project { get; set; }
+        public DbSet<Project> Project { get; set; }
+
+        public DbSet<DocumentGroup> DocumentGroup { get; set; }
+
+        public DbSet<ProjectDocumentGroup> ProjectDocumentGroup { get; set; }
+
+
     }
 }

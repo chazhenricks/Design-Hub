@@ -15,12 +15,17 @@ namespace designhub.Models
         public string Message { get; set; }
 
         [Required]
+        [DataType(DataType.Date)]
+        [Display(Name = "Date")]
+        public DateTime DateCreated { get; set; }
+
+        [Required]
         public virtual ApplicationUser User { get; set; }
 
         [Required]
-        public int FileID { get; set; }
+        public int DocumentID { get; set; }
 
-        public File File { get; set; }
+        public Document Document { get; set; }
 
     }
 }

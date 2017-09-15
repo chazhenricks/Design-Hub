@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace designhub.Models
 {
-    public class ProjectFileGroup
+    public class ProjectDocumentGroup
     {
         [Key]
-        public int ProjectFileGroupID { get; set; }
+        public int ProjectDocumentGroupID { get; set; }
 
         [Required]
         public int ProjectID { get; set; }
@@ -17,9 +17,9 @@ namespace designhub.Models
         public Project Project { get; set; }
 
         [Required]
-        public int FileGroupID { get; set; }
+        public int DocumentGroupID { get; set; }
 
-        public FileGroup FileGroup { get; set; }
+        public DocumentGroup DocumentGroup { get; set; }
 
         [Required]
         [DataType(DataType.Date)]

@@ -5,13 +5,12 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using designhub.Data;
 
-namespace designhub.Data.Migrations
+namespace designhub.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170911162735_initial")]
-    partial class initial
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")
@@ -31,6 +30,12 @@ namespace designhub.Data.Migrations
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired();
+
+                    b.Property<string>("LastName")
+                        .IsRequired();
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -65,6 +70,109 @@ namespace designhub.Data.Migrations
                         .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("designhub.Models.Comment", b =>
+                {
+                    b.Property<int>("CommentID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<int>("DocumentID");
+
+                    b.Property<string>("Message")
+                        .IsRequired();
+
+                    b.Property<string>("UserId")
+                        .IsRequired();
+
+                    b.HasKey("CommentID");
+
+                    b.HasIndex("DocumentID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Comment");
+                });
+
+            modelBuilder.Entity("designhub.Models.Document", b =>
+                {
+                    b.Property<int>("DocumentID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<int>("DocumentGroupID");
+
+                    b.Property<string>("DocumentPath")
+                        .IsRequired();
+
+                    b.Property<string>("UserId")
+                        .IsRequired();
+
+                    b.HasKey("DocumentID");
+
+                    b.HasIndex("DocumentGroupID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Document");
+                });
+
+            modelBuilder.Entity("designhub.Models.DocumentGroup", b =>
+                {
+                    b.Property<int>("DocumentGroupID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.HasKey("DocumentGroupID");
+
+                    b.ToTable("DocumentGroup");
+                });
+
+            modelBuilder.Entity("designhub.Models.Project", b =>
+                {
+                    b.Property<int>("ProjectID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.Property<string>("UserId")
+                        .IsRequired();
+
+                    b.HasKey("ProjectID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Project");
+                });
+
+            modelBuilder.Entity("designhub.Models.ProjectDocumentGroup", b =>
+                {
+                    b.Property<int>("ProjectDocumentGroupID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("DateCreated");
+
+                    b.Property<int>("DocumentGroupID");
+
+                    b.Property<int>("ProjectID");
+
+                    b.HasKey("ProjectDocumentGroupID");
+
+                    b.HasIndex("DocumentGroupID");
+
+                    b.HasIndex("ProjectID");
+
+                    b.ToTable("ProjectDocumentGroup");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
@@ -172,6 +280,53 @@ namespace designhub.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("designhub.Models.Comment", b =>
+                {
+                    b.HasOne("designhub.Models.Document", "Document")
+                        .WithMany()
+                        .HasForeignKey("DocumentID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("designhub.Models.ApplicationUser", "User")
+                        .WithMany("Comment")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("designhub.Models.Document", b =>
+                {
+                    b.HasOne("designhub.Models.DocumentGroup", "DocumentGroup")
+                        .WithMany()
+                        .HasForeignKey("DocumentGroupID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("designhub.Models.ApplicationUser", "User")
+                        .WithMany("Document")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("designhub.Models.Project", b =>
+                {
+                    b.HasOne("designhub.Models.ApplicationUser", "User")
+                        .WithMany("Project")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("designhub.Models.ProjectDocumentGroup", b =>
+                {
+                    b.HasOne("designhub.Models.DocumentGroup", "DocumentGroup")
+                        .WithMany("ProjectDocumentGroup")
+                        .HasForeignKey("DocumentGroupID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("designhub.Models.Project", "Project")
+                        .WithMany("ProjectDocumentGroup")
+                        .HasForeignKey("ProjectID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>

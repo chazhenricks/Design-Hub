@@ -18,7 +18,7 @@ namespace designhub.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        public ICollection<File> File { get; set; }
+        public ICollection<Document> Document { get; set; }
 
         public ICollection<Project> Project { get; set; }
 

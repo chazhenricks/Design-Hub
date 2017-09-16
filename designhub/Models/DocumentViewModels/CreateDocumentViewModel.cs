@@ -10,6 +10,8 @@ namespace designhub.Models.DocumentViewModels
     {
         public Document Document { get; set; }
 
+        public int DocumentGroupID { get; set; }
+
 
         public string Name { get; set; }
 

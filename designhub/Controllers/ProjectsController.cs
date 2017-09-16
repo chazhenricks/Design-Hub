@@ -7,17 +7,24 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using designhub.Data;
 using designhub.Models;
+using designhub.Models.ProjectViewModels;
+using Microsoft.AspNetCore.Identity;
 
 namespace designhub.Controllers
 {
     public class ProjectsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public ProjectsController(ApplicationDbContext context)
+        public ProjectsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
-            _context = context;    
+            _context = context;
+            _userManager = userManager;
         }
+
+        // This task retrieves the currently authenticated user
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Projects
         public async Task<IActionResult> Index()
@@ -54,10 +61,19 @@ namespace designhub.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProjectID,Name,DateCreated")] Project project)
+        public async Task<IActionResult> Create(Project project)
         {
+            
+
+            project.DateCreated = DateTime.Now;
+
+            ModelState.Remove("User");
+
             if (ModelState.IsValid)
             {
+                var user = await GetCurrentUserAsync();
+               project.User = user;
+
                 _context.Add(project);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");

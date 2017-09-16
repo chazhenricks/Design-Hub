@@ -8,7 +8,9 @@ namespace designhub.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(object Test)
+
+            
         {
             return View();
         }

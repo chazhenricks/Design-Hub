@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using designhub.Data;
 using designhub.Models;
+using designhub.Models.DocumentGroupViewModels;
 
 namespace designhub.Controllers
 {
@@ -20,16 +21,22 @@ namespace designhub.Controllers
         }
 
         // GET: DocumentGroups
-        public async Task<IActionResult> Index(int? id)
+        public async Task<IActionResult> Index(int id)
         {
 
+            DocumentGroupsList viewModel = new DocumentGroupsList();
+
+            viewModel.ProjectID = id;
 
             var documentGroups = await (
                 from d in _context.DocumentGroup
                 from pd in _context.ProjectDocumentGroup
                 where d.DocumentGroupID == pd.DocumentGroupID
                 && pd.ProjectID == id
-                select d).ToListAsync();
+                select d)
+                .ToListAsync();
+
+            viewModel.DocumentGroups = documentGroups;
 
 
             if (documentGroups == null)
@@ -37,7 +44,7 @@ namespace designhub.Controllers
                 return NotFound();
             }
 
-            return View(documentGroups);
+            return View(viewModel);
         }
 
         // GET: DocumentGroups/Details/5
@@ -63,9 +70,13 @@ namespace designhub.Controllers
         }
 
         // GET: DocumentGroups/Create
-        public IActionResult Create()
+        public IActionResult Create(int id)
         {
-            return View();
+            CreateDocumentGroupViewModel viewModel = new CreateDocumentGroupViewModel();
+            viewModel.ProjectID = id;
+            viewModel.DocumentGroup = new DocumentGroup();
+
+            return View(viewModel);
         }
 
         // POST: DocumentGroups/Create
@@ -73,15 +84,27 @@ namespace designhub.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DocumentGroupID,DateCreated,Name")] DocumentGroup documentGroup)
+        public async Task<IActionResult> Create( CreateDocumentGroupViewModel viewModel)
         {
+            viewModel.DocumentGroup.DateCreated = DateTime.Now;
             if (ModelState.IsValid)
             {
-                _context.Add(documentGroup);
+
+                ProjectDocumentGroup newProjectDocumentGroup = new ProjectDocumentGroup();
+                newProjectDocumentGroup.ProjectID = viewModel.ProjectID;
+
+
+
+                _context.Add(viewModel.DocumentGroup);
                 await _context.SaveChangesAsync();
+
+                newProjectDocumentGroup.DocumentGroupID = viewModel.DocumentGroup.DocumentGroupID;
+                _context.ProjectDocumentGroup.Add(newProjectDocumentGroup);
+                await _context.SaveChangesAsync();
+
                 return RedirectToAction("Index");
             }
-            return View(documentGroup);
+            return View(viewModel.DocumentGroup);
         }
 
         // GET: DocumentGroups/Edit/5

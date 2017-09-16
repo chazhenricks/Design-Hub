@@ -102,9 +102,10 @@ namespace designhub.Controllers
                 _context.ProjectDocumentGroup.Add(newProjectDocumentGroup);
                 await _context.SaveChangesAsync();
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { id = viewModel.ProjectID });
+
             }
-            return View(viewModel.DocumentGroup);
+            return RedirectToAction("Index");
         }
 
         // GET: DocumentGroups/Edit/5

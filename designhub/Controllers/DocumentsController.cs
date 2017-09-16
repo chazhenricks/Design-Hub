@@ -29,10 +29,19 @@ namespace designhub.Controllers
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Documents
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
-            var applicationDbContext = _context.Document.Include(d => d.DocumentGroup);
-            return View(await applicationDbContext.ToListAsync());
+
+
+            var documents = await (
+               from d in _context.Document
+               from dg in _context.DocumentGroup
+               where d.DocumentGroupID == dg.DocumentGroupID
+               && dg.DocumentGroupID == id
+               select d)
+               .ToListAsync();
+
+            return View(documents);
         }
 
 
@@ -56,10 +65,13 @@ namespace designhub.Controllers
         }
 
         // GET: Documents/Create
-        public IActionResult Create()
+        public IActionResult Create(int id)
         {
-            ViewData["DocumentGroupID"] = new SelectList(_context.DocumentGroup, "DocumentGroupID", "Name");
-            return View();
+            var createDoc = new Document();
+
+            createDoc.DocumentGroupID = id;
+          
+            return View(createDoc);
         }
 
         // POST: Documents/Create
@@ -88,11 +100,13 @@ namespace designhub.Controllers
                 var user = await GetCurrentUserAsync();
 
 
-                viewModel.Document = new Document();
+               viewModel.Document = new Document();
 
 
                 viewModel.Document.User = user;
                 viewModel.Document.DateCreated = DateTime.Now;
+                viewModel.Document.DocumentGroupID = viewModel.DocumentGroupID;
+                
 
                 if (viewModel.NewDocument != null)
                 {
@@ -113,9 +127,9 @@ namespace designhub.Controllers
 
 
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { id = viewModel.DocumentGroupID});
             }
-            ViewData["DocumentGroupID"] = new SelectList(_context.DocumentGroup, "DocumentGroupID", "Name", viewModel.Document.DocumentGroupID);
+           ViewData["DocumentGroupID"] = new SelectList(_context.DocumentGroup, "DocumentGroupID", "Name", viewModel.Document.DocumentGroupID);
             return View(viewModel);
         }
 

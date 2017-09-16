@@ -28,8 +28,8 @@
                 @Html.DisplayFor(modelItem => item.DateCreated)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
+                <a asp-controller="Documents" asp-action="index" asp-route-id="@item.DocumentGroupID"> @Html.DisplayFor(modelItem => item.Name) </a>
+</td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.DocumentGroupID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.DocumentGroupID">Details</a> |

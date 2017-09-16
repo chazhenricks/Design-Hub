@@ -17,10 +17,16 @@
             @Html.DisplayFor(model => model.Message)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.Document)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Document.FilePath)
+            @Html.DisplayFor(model => model.Document.DocumentPath)
         </dd>
     </dl>
 </div>

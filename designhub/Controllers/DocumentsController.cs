@@ -59,6 +59,8 @@ namespace designhub.Controllers
                 return NotFound();
             }
 
+            
+            //grab document that matches the documentID we pass in
             var document = await _context.Document
                 .Include(d => d.DocumentGroup)
                 .SingleOrDefaultAsync(m => m.DocumentID == id);
@@ -67,7 +69,26 @@ namespace designhub.Controllers
                 return NotFound();
             }
 
-            return View(document);
+            //grab list of comments that are attached to a documentID
+            var comments = await (
+               from c in _context.Comment
+               where c.DocumentID == document.DocumentID
+               select c)
+               .ToListAsync();
+
+            //if no comments, return view with no comments attached.
+            if (comments.Count < 1)
+            {
+                return View("DocumentDetailNoComments", document);
+            }
+
+            //else build a new DocumentDetailView and return a view with that object attached. 
+            DocumentDetailView documentDetail = new DocumentDetailView();
+            documentDetail.Document = document;
+            documentDetail.Comments = comments;
+
+
+            return View("DocumentDetailComments",documentDetail);
         }
 
         // GET: Documents/Create

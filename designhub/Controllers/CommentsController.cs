@@ -48,7 +48,7 @@ namespace designhub.Controllers
         // GET: Comments/Create
         public IActionResult Create()
         {
-            ViewData["DocumentID"] = new SelectList(_context.Document, "DocumentID", "FilePath");
+            ViewData["DocumentID"] = new SelectList(_context.Document, "DocumentID", "DocumentPath");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace designhub.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CommentID,Message,DocumentID")] Comment comment)
+        public async Task<IActionResult> Create([Bind("CommentID,Message,DateCreated,DocumentID")] Comment comment)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace designhub.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["DocumentID"] = new SelectList(_context.Document, "DocumentID", "FilePath", comment.DocumentID);
+            ViewData["DocumentID"] = new SelectList(_context.Document, "DocumentID", "DocumentPath", comment.DocumentID);
             return View(comment);
         }
 
@@ -82,7 +82,7 @@ namespace designhub.Controllers
             {
                 return NotFound();
             }
-            ViewData["DocumentID"] = new SelectList(_context.Document, "DocumentID", "FilePath", comment.DocumentID);
+            ViewData["DocumentID"] = new SelectList(_context.Document, "DocumentID", "DocumentPath", comment.DocumentID);
             return View(comment);
         }
 
@@ -91,7 +91,7 @@ namespace designhub.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CommentID,Message,DocumentID")] Comment comment)
+        public async Task<IActionResult> Edit(int id, [Bind("CommentID,Message,DateCreated,DocumentID")] Comment comment)
         {
             if (id != comment.CommentID)
             {
@@ -118,7 +118,7 @@ namespace designhub.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["DocumentID"] = new SelectList(_context.Document, "DocumentID", "FilePath", comment.DocumentID);
+            ViewData["DocumentID"] = new SelectList(_context.Document, "DocumentID", "DocumentPath", comment.DocumentID);
             return View(comment);
         }
 

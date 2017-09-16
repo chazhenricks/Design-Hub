@@ -1,0 +1,45 @@
+@model designhub.Models.DocumentViewModels.DocumentDetailView
+
+<div>
+    <h4>Document</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Document.DateCreated)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Document.DateCreated)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Document.DocumentPath)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Document.DocumentPath)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Document.DocumentGroup)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Document.DocumentGroup.Name)
+        </dd>
+        @foreach(var item in Model.Comments)
+        {
+            <dt>
+                @Html.DisplayNameFor(modelItem => item.Message)
+            </dt>
+            <dd>
+                @Html.DisplayFor(modelItem => item.Message)
+            </dd>
+        <dt>
+            @Html.DisplayNameFor(modelItem => item.DateCreated)
+        </dt>
+        <dd>
+            @Html.DisplayFor(modelItem => item.DateCreated)
+        </dd>
+        }
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Document.DocumentID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -15,6 +15,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Message)
                 </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateCreated)
+                </th>
             <th>
                 @Html.DisplayNameFor(model => model.Document)
             </th>
@@ -28,7 +31,7 @@
                 @Html.DisplayFor(modelItem => item.Message)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Document.FilePath)
+                @Html.DisplayFor(modelItem => item.DateCreated)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.CommentID">Edit</a> |

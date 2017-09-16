@@ -29,7 +29,8 @@ namespace designhub.Controllers
                 from pd in _context.ProjectDocumentGroup
                 where d.DocumentGroupID == pd.DocumentGroupID
                 && pd.ProjectID == id
-                select d).ToListAsync();
+                select d)
+                .ToListAsync();
 
 
             if (documentGroups == null)
@@ -63,8 +64,9 @@ namespace designhub.Controllers
         }
 
         // GET: DocumentGroups/Create
-        public IActionResult Create()
+        public IActionResult Create(int id)
         {
+
             return View();
         }
 
@@ -73,10 +75,17 @@ namespace designhub.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DocumentGroupID,DateCreated,Name")] DocumentGroup documentGroup)
+        public async Task<IActionResult> Create( DocumentGroup documentGroup)
         {
+            documentGroup.DateCreated = DateTime.Now;
             if (ModelState.IsValid)
             {
+
+               
+                
+
+
+
                 _context.Add(documentGroup);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");

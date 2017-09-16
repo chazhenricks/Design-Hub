@@ -29,7 +29,7 @@ namespace designhub.Controllers
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Documents
-        public async Task<IActionResult> Index(int? id)
+        public async Task<IActionResult> Index(int id)
         {
 
 
@@ -40,6 +40,12 @@ namespace designhub.Controllers
                && dg.DocumentGroupID == id
                select d)
                .ToListAsync();
+
+            if (documents.Count < 1)
+            {
+                
+                return RedirectToAction("Create", new { id = id});
+            }
 
             return View(documents);
         }

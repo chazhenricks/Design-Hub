@@ -101,6 +101,20 @@ namespace designhub.Controllers
             return View(createDoc);
         }
 
+
+        public FileResult Download(int id)
+        {
+            var document =  _context.Document
+                            .SingleOrDefault(d => d.DocumentID == id);
+
+
+            var filePath = document.DocumentPath;
+            string fileName = filePath.Replace("/documents/", "");
+            byte[] fileBytes = System.IO.File.ReadAllBytes(@"wwwroot\" + filePath);
+            return File(fileBytes, "application/x-msdownload", fileName);
+            
+        }
+
         // POST: Documents/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.

@@ -9,7 +9,28 @@
 <p>
     <a asp-action="Create" asp-route-id="@Model.DocumentGroup.DocumentGroupID">Create New</a>
 </p>
-<table class="table">
+
+
+@foreach (var item in Model.Documents)
+{
+    <div class="card" style="width: 20rem;">
+        <div class="card-block">
+            <h4 class="card-title">Date Created</h4>
+            <p class="card-text">@item.DateCreated</p>
+            <a asp-action="Download" asp-route-document="@item.DocumentID" class="btn btn-primary">Download</a>
+        </div>
+    </div>
+}
+
+
+
+
+
+
+
+
+
+@*<table class="table">
     <thead>
         <tr>
                 <th>
@@ -39,4 +60,4 @@
         </tr>
 }
     </tbody>
-</table>
+</table>*@

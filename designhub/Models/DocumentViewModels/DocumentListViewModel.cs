@@ -9,5 +9,6 @@ namespace designhub.Models.DocumentViewModels
     {
         public List<Document> Documents { get; set; }
         public DocumentGroup DocumentGroup { get; set; }
+        public string FileName { get; set; }
     }
 }

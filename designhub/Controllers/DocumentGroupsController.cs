@@ -35,6 +35,7 @@ namespace designhub.Controllers
                 where d.DocumentGroupID == pd.DocumentGroupID
                 && pd.ProjectID == id
                 select d)
+                .OrderByDescending(dg => dg.DateCreated)
                 .ToListAsync();
 
             var project = await _context.Project.SingleAsync(p => p.ProjectID == id);

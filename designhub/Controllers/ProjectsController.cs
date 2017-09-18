@@ -33,6 +33,7 @@ namespace designhub.Controllers
 
             var projects = await _context.Project
                            .Where(p => p.User == user)
+                           .OrderByDescending(p => p.DateCreated)
                            .ToListAsync();
 
             if (projects.Count > 1)

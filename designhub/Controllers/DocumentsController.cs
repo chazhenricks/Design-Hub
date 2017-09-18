@@ -39,6 +39,7 @@ namespace designhub.Controllers
                where d.DocumentGroupID == dg.DocumentGroupID
                && dg.DocumentGroupID == id
                select d)
+               .OrderByDescending(d => d.DateCreated)
                .ToListAsync();
 
             var documentGroup = await _context.DocumentGroup.SingleAsync(dg => dg.DocumentGroupID == id);

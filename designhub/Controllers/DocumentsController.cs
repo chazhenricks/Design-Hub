@@ -31,7 +31,7 @@ namespace designhub.Controllers
         // GET: Documents
         public async Task<IActionResult> Index(int id)
         {
-
+            DocumentListViewModel viewModel = new DocumentListViewModel();
 
             var documents = await (
                from d in _context.Document
@@ -41,13 +41,18 @@ namespace designhub.Controllers
                select d)
                .ToListAsync();
 
+            var documentGroup = await _context.DocumentGroup.SingleAsync(dg => dg.DocumentGroupID == id);
+
             if (documents.Count < 1)
             {
                 
                 return RedirectToAction("Create", new { id = id});
             }
 
-            return View(documents);
+            viewModel.Documents = documents;
+            viewModel.DocumentGroup = documentGroup;
+
+            return View(viewModel);
         }
 
 

@@ -1,41 +1,36 @@
-@model IEnumerable<designhub.Models.Document>
+@model designhub.Models.DocumentViewModels.DocumentListViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>@Model.DocumentGroup.Name</h2>
 
 <p>
-    <a asp-action="Create" asp-route-id="@Model.Select(m => m.DocumentGroupID).First()">Create New</a>
+    <a asp-action="Create" asp-route-id="@Model.DocumentGroup.DocumentGroupID">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.DateCreated)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DocumentPath)
+                    Date Created
                 </th>
             <th>
-                @Html.DisplayNameFor(model => model.DocumentGroup)
+                File Name
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model.Documents) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.DateCreated)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DocumentPath)
+                @Html.DisplayFor(modelItem =>item.DocumentPath)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DocumentGroup.Name)
-            </td>
+
             <td>
                 <a asp-action="Edit" asp-route-id="@item.DocumentID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.DocumentID">Details</a> |

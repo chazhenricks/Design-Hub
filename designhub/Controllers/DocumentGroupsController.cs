@@ -9,6 +9,7 @@ using designhub.Data;
 using designhub.Models;
 using designhub.Models.DocumentGroupViewModels;
 
+
 namespace designhub.Controllers
 {
     public class DocumentGroupsController : Controller
@@ -26,7 +27,7 @@ namespace designhub.Controllers
 
             DocumentGroupsList viewModel = new DocumentGroupsList();
 
-            viewModel.ProjectID = id;
+         
 
             var documentGroups = await (
                 from d in _context.DocumentGroup
@@ -36,20 +37,22 @@ namespace designhub.Controllers
                 select d)
                 .ToListAsync();
 
-            viewModel.DocumentGroups = documentGroups;
-
+            var project = await _context.Project.SingleAsync(p => p.ProjectID == id);
 
             if (documentGroups == null)
             {
                 return NotFound();
             }
 
-            if (documentGroups.Count > 1)
+            if (documentGroups.Count > 0)
             {
+               
+                viewModel.DocumentGroups = documentGroups;
+                viewModel.Project = project;
                 return View(viewModel);
             }
-
-            return View("CreateNewDocument");
+        
+            return RedirectToAction("Create", new {id = id } );
 
             
         }

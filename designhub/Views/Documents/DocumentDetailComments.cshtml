@@ -41,5 +41,5 @@
 </div>
 <div>
     <a asp-action="Download" asp-route-document="@Model.Document.DocumentID">Download</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" asp-route-id="@Model.Document.DocumentGroupID">Back to List</a>
 </div>

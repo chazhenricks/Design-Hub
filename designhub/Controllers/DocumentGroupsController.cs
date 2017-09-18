@@ -44,7 +44,14 @@ namespace designhub.Controllers
                 return NotFound();
             }
 
-            return View(viewModel);
+            if (documentGroups.Count > 1)
+            {
+                return View(viewModel);
+            }
+
+            return View("CreateNewDocument");
+
+            
         }
 
         // GET: DocumentGroups/Details/5

@@ -29,7 +29,17 @@ namespace designhub.Controllers
         // GET: Projects
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Project.ToListAsync());
+            var user = await GetCurrentUserAsync();
+
+            var projects = await _context.Project
+                           .Where(p => p.User == user)
+                           .ToListAsync();
+
+            if (projects.Count > 1)
+            {
+                return View(projects);
+            }
+            return View("CreateAProject");
         }
 
         // GET: Projects/Details/5

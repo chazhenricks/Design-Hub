@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using designhub.Models;
 using designhub.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace designhub.Controllers
 {

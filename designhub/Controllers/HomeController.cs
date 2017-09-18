@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using designhub.Models;
-
+using designhub.Data;
 
 namespace designhub.Controllers
 {
@@ -13,10 +13,13 @@ namespace designhub.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public HomeController(UserManager<ApplicationUser> userManager)
+        private readonly ApplicationDbContext _context;
+
+        public HomeController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
           
             _userManager = userManager;
+            _context = context;
         }
 
         // This task retrieves the currently authenticated user
@@ -24,14 +27,23 @@ namespace designhub.Controllers
 
 
 
-        public IActionResult Index(object Test)     
+        public async Task<IActionResult> Index(object Test)     
         {
             var user = GetCurrentUserAsync();
             if (User.Identity.IsAuthenticated)
             {
-                return View("LoggedInView");
+
+                var projects = await _context.Project.ToListAsync();
+
+                if (projects.Count < 1)
+                {
+                    return View("LoggedInView");
+                }
+
+                return RedirectToAction("Index", "Projects");
+                
             }
-            return View();
+            return View("Index");
         }
 
         public IActionResult About()

@@ -9,6 +9,6 @@ namespace designhub.Models.DocumentGroupViewModels
     {
         public List<DocumentGroup> DocumentGroups { get; set; }
 
-        public int ProjectID { get; set; }
+        public Project Project { get; set; }
     }
 }

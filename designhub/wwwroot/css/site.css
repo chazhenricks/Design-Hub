@@ -48,3 +48,8 @@ textarea {
         display: none;
     }
 }
+
+/*Hides double border in accordian table*/
+.hiddenRow {
+    padding: 0 !important;
+}

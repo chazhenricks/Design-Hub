@@ -40,6 +40,10 @@ namespace designhub.Controllers
 
             var project = await _context.Project.SingleAsync(p => p.ProjectID == id);
 
+            List<Document> documents = new List<Document>();
+
+
+
             if (documentGroups == null)
             {
                 return NotFound();
@@ -47,9 +51,20 @@ namespace designhub.Controllers
 
             if (documentGroups.Count > 0)
             {
+                foreach (var dg in documentGroups)
+                {
+                    var dgDocuments = await _context.Document
+                                    .Where(d => d.DocumentGroupID == dg.DocumentGroupID)
+                                    .ToListAsync();
+                    foreach (Document doc in dgDocuments)
+                    {
+                        documents.Add(doc);
+                    }
+                }
                
                 viewModel.DocumentGroups = documentGroups;
                 viewModel.Project = project;
+                viewModel.Documents = documents;
                 return View(viewModel);
             }
         

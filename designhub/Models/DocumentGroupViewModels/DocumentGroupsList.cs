@@ -8,7 +8,7 @@ namespace designhub.Models.DocumentGroupViewModels
     public class DocumentGroupsList
     {
         public List<DocumentGroup> DocumentGroups { get; set; }
-
+        public List<Document> Documents { get; set; }
         public Project Project { get; set; }
     }
 }

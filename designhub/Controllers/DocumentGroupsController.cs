@@ -89,8 +89,9 @@ namespace designhub.Controllers
             }
 
             //if there are no document groups for a given project ID, redirect to create a new document group 
-            EmptyProjectViewModel viewModel = new EmptyProjectViewModel();
-            return View("EmptyProject", viewModel);
+            EmptyProjectViewModel emptyProject = new EmptyProjectViewModel();
+            emptyProject.ProjectID = project.ProjectID;
+            return View("EmptyProject", emptyProject);
 
             
         }

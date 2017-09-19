@@ -1,4 +1,4 @@
-@model designhub.Models.DocumentGroupViewModels.EmptyProjectViewModels
+@model designhub.Models.DocumentGroupViewModels.EmptyProjectViewModel
 
 
 @{
@@ -10,3 +10,4 @@
 <p>It appears that this project doesnt contain any files.</p>
 <p>Click the button below to add some files. </p>
 <a class="btn btn-success" asp-action="Create" asp-route-id="@Model.ProjectID">Add Some Files</a>
+<a class="btn" asp-controller="Projects" asp-action="Index">Back To Projects</a>

@@ -55,6 +55,7 @@ namespace designhub.Controllers
                 {
                     var dgDocuments = await _context.Document
                                     .Where(d => d.DocumentGroupID == dg.DocumentGroupID)
+                                    .OrderByDescending(d => d.DateCreated)
                                     .ToListAsync();
                     foreach (Document doc in dgDocuments)
                     {

@@ -29,6 +29,7 @@ namespace designhub.Controllers
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Documents
+        //id is DocumentGroupID used to add a new document to a document group. 
         public async Task<IActionResult> Index(int id)
         {
             DocumentListViewModel viewModel = new DocumentListViewModel();
@@ -171,10 +172,23 @@ namespace designhub.Controllers
 
 
                 _context.Add(viewModel.Document);
-
-
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index", new { id = viewModel.DocumentGroupID});
+
+
+                var projectDocGroupList = await (
+                    from pdg in _context.ProjectDocumentGroup
+                    where pdg.DocumentGroupID == viewModel.DocumentGroupID
+                    select pdg)
+                    .ToListAsync();
+
+
+                var pg = projectDocGroupList.First();
+                              
+
+
+
+
+                return RedirectToAction("Index", "DocumentGroups", new {id = pg.ProjectID});
             }
            ViewData["DocumentGroupID"] = new SelectList(_context.DocumentGroup, "DocumentGroupID", "Name", viewModel.Document.DocumentGroupID);
             return View(viewModel);
@@ -260,7 +274,16 @@ namespace designhub.Controllers
             var document = await _context.Document.SingleOrDefaultAsync(m => m.DocumentID == id);
             _context.Document.Remove(document);
             await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
+
+            var projectDocGroupList = await (
+                    from pdg in _context.ProjectDocumentGroup
+                    where pdg.DocumentGroupID == document.DocumentGroupID
+                    select pdg)
+                    .ToListAsync();
+
+
+            var pg = projectDocGroupList.First();
+            return RedirectToAction("Index", "DocumentGroups", new {id = pg.ProjectID});
         }
 
         private bool DocumentExists(int id)

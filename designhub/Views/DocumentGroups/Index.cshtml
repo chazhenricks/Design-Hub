@@ -13,7 +13,7 @@
     <thead>
         <tr>
                 <th>
-                    Name
+                   File Name
                 </th>
                 <th>
                    Date Created
@@ -33,8 +33,9 @@
         </td>
 
         <td>
-            <a asp-action="Details" asp-route-id="@item.DocumentGroupID">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.DocumentGroupID">Delete</a>
+            <a class="btn" asp-controller="Documents" asp-action="Create" asp-route-id="@item.DocumentGroupID"> Upload New Version</a> |
+            <a class="btn" asp-action="Delete" asp-route-id="@item.DocumentGroupID">Delete</a> 
+
         </td>
     </tr>
     
@@ -48,6 +49,10 @@
                 </td>
                 <td>
                     @doc.DateCreated
+                </td>
+                <td>
+                    <a class="btn btn-success " asp-controller="Documents" asp-action="Download" asp-route-id="@doc.DocumentID">Download</a>
+                    <a class="btn btn-danger" asp-controller="Documents" asp-action="Delete" asp-route-id="@doc.DocumentID">Delete Version</a>
                 </td>
              }
             </tr>

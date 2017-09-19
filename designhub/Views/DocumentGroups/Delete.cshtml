@@ -1,4 +1,4 @@
-@model designhub.Models.DocumentGroup
+@model designhub.Models.DocumentGroupViewModels.DeleteDocumentGroup
 
 @{
     ViewData["Title"] = "Delete";
@@ -11,25 +11,27 @@
     <h4>DocumentGroup</h4>
     <hr />
     <dl class="dl-horizontal">
-        <input type="hidden" asp-for="DocumentGroupID" />
+        <input type="hidden" asp-for="@Model.DocumentGroup.DocumentGroupID" />
+        <input type="hidden" asp-for="@Model.ProjectID" />
         <dt>
-            @Html.DisplayNameFor(model => model.DateCreated)
+            @Html.DisplayNameFor(model => model.DocumentGroup.DateCreated)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.DateCreated)
+            @Html.DisplayFor(model => model.DocumentGroup.DateCreated)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.DocumentGroup.Name)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.DocumentGroup.Name)
         </dd>
     </dl>
-    
+     
     <form asp-action="Delete">
         <div class="form-actions no-color">
+            <input type="hidden" value="@Model.ProjectID" asp-for="ProjectID" />
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            <a asp-action="Index">Back to List</a>
+            <a asp-action="Index" asp-route-id="@Model.ProjectID">Back to List</a>
         </div>
     </form>
 </div>

@@ -22,7 +22,7 @@
     @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
 <body class="@(User.Identity.IsAuthenticated ? "logged_in" : "body_login_page")">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar @(User.Identity.IsAuthenticated ? "navbar-default" : "navbar-inverse") navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -31,7 +31,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Design Hub</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand logo">Design Hub</a>
             </div>
            
             <div class="navbar-collapse collapse">

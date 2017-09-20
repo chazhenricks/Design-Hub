@@ -7,8 +7,8 @@
 <h2>@Model.Project.Name</h2>
 
 <p>
-    <a asp-action="Create" asp-route-id="@Model.Project.ProjectID">Add Another File</a> | 
-    <a asp-controller="Projects" asp-action="Index">Back To Projects List</a>
+    <a asp-action="Create" asp-route-id="@Model.Project.ProjectID" class="btn btn-default">Add Another File</a>  
+        
 </p>
 <table class="table table-hover">
     <thead>
@@ -34,8 +34,8 @@
         </td>
 
         <td>
-            <a class="btn" asp-controller="Documents" asp-action="Create" asp-route-id="@item.DocumentGroupID"> Upload New Version</a> |
-            <a class="btn" asp-action="Delete" asp-route-id="@item.DocumentGroupID">Delete</a> 
+            <a class="btn btn-default" asp-controller="Documents" asp-action="Create" asp-route-id="@item.DocumentGroupID"> Upload New Version</a> 
+            <a class="btn btn-default" asp-action="Delete" asp-route-id="@item.DocumentGroupID">Delete</a> 
 
         </td>
     </tr>
@@ -52,8 +52,8 @@
                     @doc.DateCreated
                 </td>
                 <td>
-                    <a class="btn btn-success " asp-controller="Documents" asp-action="Download" asp-route-id="@doc.DocumentID">Download</a>
-                    <a class="btn btn-danger" asp-controller="Documents" asp-action="Delete" asp-route-id="@doc.DocumentID">Delete Version</a>
+                    <a class="btn btn-default " asp-controller="Documents" asp-action="Download" asp-route-id="@doc.DocumentID">Download</a>
+                    <a class="btn btn-default" asp-controller="Documents" asp-action="Delete" asp-route-id="@doc.DocumentID">Delete Version</a>
                 </td>
              }
             </tr>
@@ -61,3 +61,5 @@
 }
     </tbody>
 </table>
+
+<a asp-controller="Projects" asp-action="Index" class="btn btn-default">Back To Projects List</a>

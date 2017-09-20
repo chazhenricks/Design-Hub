@@ -1,6 +1,21 @@
-﻿body {
+﻿/***************************
+    General Styling
+****************************/
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.logged_in {
+    background-color: rgba(247, 247, 247, .9);
+}
+
+.logo {
+    color: orangered !important;
+    font-size: 1.3em;
+    font-weight: 100;
 }
 
 /* Wrapping element */
@@ -10,44 +25,26 @@
     padding-right: 15px;
 }
 
-/* Set widths on the form inputs since otherwise they're 100% wide */
-input,
-select,
-textarea {
-    max-width: 280px;
+.table_headers{
+    font-size: 2em;
+    font-weight: 400;
 }
 
-/* Carousel */
-.carousel-caption p {
-    font-size: 20px;
-    line-height: 1.4;
+.table_data {
+    font-size: 2.5em;
+    font-weight: 100;
 }
 
-/* buttons and links extension to use brackets: [ click me ] */
-.btn-bracketed::before {
-    display: inline-block;
-    content: "[";
-    padding-right: 0.5em;
+/***************************
+    Project View
+****************************/
+
+.project_list {
+    text-decoration: none;
+    color: black;
 }
 
-.btn-bracketed::after {
-    display: inline-block;
-    content: "]";
-    padding-left: 0.5em;
-}
 
-/* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"] {
-    width: 100%;
-}
-
-/* Hide/rearrange for smaller screens */
-@media screen and (max-width: 767px) {
-    /* Hide captions */
-    .carousel-caption {
-        display: none;
-    }
-}
 
 /*Hides double border in accordian table*/
 .hiddenRow {
@@ -68,25 +65,36 @@ textarea {
 /*landing page text*/
 .welcome {
     color: white;
-    font-family: 'Roboto', sans-serif;
+
 }
 
-.welcome_header {
+.page_header {
     font-size: 6em;
     font-weight: 900;
-    margin-bottom: 1em;
+    margin-bottom: .5em;
 }
 
+
+
 /*landing page typography*/
-.welcome_intro {
+.page_info {
     font-size: 1.5em;
     font-weight: 100;
 }
 
 .create_account {
     margin-top: 3rem; 
+    color: orangered;
 }
 
 hr {
     border-color: orangered;
+}
+
+/***************************
+   Projects Style
+****************************/
+
+.projects_info {
+    margin-bottom: 2em;
 }

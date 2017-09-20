@@ -4,20 +4,18 @@
     ViewData["Title"] = "Index";
 }
 
-<h2> @Model.Select(p => p.User).First().FirstName's Projects</h2>
+<h2 class="text-center page_header"> Projects</h2>
+<p class="text-center page_info projects_info">Select one of the projects below to see the files inside</p>
 
-<p>
-    <a asp-action="Create">Create New</a> 
 
-</p>
 <table class="table">
     <thead>
         <tr>
-                <th>
-                  @Html.DisplayNameFor(model => model.Name) 
+                <th class="table_headers">
+                  Name of Project
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DateCreated)
+                <th class="table_headers">
+                    Date Created
                 </th>
             <th></th>
         </tr>
@@ -25,16 +23,20 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                <a asp-controller="DocumentGroups" asp-action="index" asp-route-id="@item.ProjectID"> @Html.DisplayFor(modelItem => item.Name) </a>
+            <td class="table_data">
+                <a class="project_list" asp-controller="DocumentGroups" asp-action="index" asp-route-id="@item.ProjectID"> @Html.DisplayFor(modelItem => item.Name) </a>
             </td>
-            <td>
+            <td class="table_data">
                 @Html.DisplayFor(modelItem => item.DateCreated)
             </td>
-            <td>
-                <a asp-action="Delete" asp-route-id="@item.ProjectID">Remove Project</a>
+            <td >
+                <a asp-action="Delete" asp-route-id="@item.ProjectID" class="btn btn-default">Remove Project</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+<p class="text-center">
+    <a asp-action="Create" class="btn btn-default">Create New</a>
+</p>

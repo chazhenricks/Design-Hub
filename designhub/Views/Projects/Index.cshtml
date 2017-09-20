@@ -27,9 +27,12 @@
         <tr>
             <td>
                 <a asp-controller="DocumentGroups" asp-action="index" asp-route-id="@item.ProjectID"> @Html.DisplayFor(modelItem => item.Name) </a>
-</td>
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.ProjectID">Remove Project</a>
             </td>
         </tr>
 }

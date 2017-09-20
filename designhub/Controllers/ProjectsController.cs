@@ -36,7 +36,7 @@ namespace designhub.Controllers
                            .OrderByDescending(p => p.DateCreated)
                            .ToListAsync();
 
-            if (projects.Count > 1)
+            if (projects.Count > 0)
             {
                 return View(projects);
             }

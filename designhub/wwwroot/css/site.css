@@ -53,3 +53,40 @@ textarea {
 .hiddenRow {
     padding: 0 !important;
 }
+
+
+/***************************
+    Landing page style
+****************************/
+
+/*landing page background image*/
+.body_login_page{
+    background-image: url("../images/landing.jpg");
+    background-size: cover;
+}
+
+/*landing page text*/
+.welcome {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+.welcome_header {
+    font-size: 6em;
+    font-weight: 900;
+    margin-bottom: 1em;
+}
+
+/*landing page typography*/
+.welcome_intro {
+    font-size: 1.5em;
+    font-weight: 100;
+}
+
+.create_account {
+    margin-top: 3rem; 
+}
+
+hr {
+    border-color: orangered;
+}

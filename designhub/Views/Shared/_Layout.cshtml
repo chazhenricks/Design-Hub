@@ -8,17 +8,20 @@
 
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,400,900" rel="stylesheet">
         <link rel="stylesheet" href="~/css/site.css" />
+
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,400,900" rel="stylesheet">
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
     @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
-<body>
+<body class="@(User.Identity.IsAuthenticated ? "logged_in" : "body_login_page")">
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -48,7 +51,7 @@
         <hr />
     </div>
     <div class="container-fluid">
-        <footer class="footer navbar-fixed-bottom">
+        <footer class="footer">
             <p class="text-center">&copy; 2017 - Chaz Henricks | Visit me on <a href="https://github.com/chazhenricks">GitHub!</a></p>
       
         </footer>

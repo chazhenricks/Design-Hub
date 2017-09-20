@@ -3,50 +3,55 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-<div class="container">
+<div class="container" id="landing_container">
     <div class="row">
-        <h1 class="text-center">Welcome To Design Hub</h1>
+        <h1 class="text-center welcome welcome_header">Built For Everyone</h1>
     </div>
     <div class="row">
-        <div class="col-md-6">
-            <h2>Built For Everyone</h2>
-            <p>Design Hub strives to offer a single place where designers, content managers, or anyone else who needs to store their work can create projects to store important documents.</p>
-           <p> Design Hub also lets you keep track of versions of files so you always know what file was most recently updated, as well as where to get a look at previous versions.</p>
-        </div>
-        <form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal col-md-6">
-            <h4>Create a new account.</h4>
-            <hr />
+        <div class="">
+            <p class="welcome welcome_intro text-center">Design Hub strives to offer a single place where designers, photograhers, speechwriters, or anyone else who needs to store their work can create projects to store important documents.</p>
+           <p class="welcome welcome_intro text-center"> Design Hub also lets you keep track of versions of files so you always know what file was most recently updated, as well as maintaining previous versions for when you need to go back.</p>
+            <p class="welcome welcome_intro text-center">Register below to get started</p>
+</div>
+    </div>
+    <div class="row">
+        <h4 class="welcome text-center create_account">Create a new account.</h4>
+       
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="FirstName" class="col-md-2 control-label"></label>
+                <label asp-for="FirstName" class="col-md-2 control-label welcome"></label>
                 <div class="col-md-10">
                     <input asp-for="FirstName" class="form-control" />
                     <span asp-validation-for="FirstName" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="LastName" class="col-md-2 control-label"></label>
+                <label asp-for="LastName" class="col-md-2 control-label welcome"></label>
                 <div class="col-md-10">
                     <input asp-for="LastName" class="form-control" />
                     <span asp-validation-for="LastName" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="Email" class="col-md-2 control-label"></label>
+                <label asp-for="Email" class="col-md-2 control-label welcome"></label>
                 <div class="col-md-10">
                     <input asp-for="Email" class="form-control" />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="Password" class="col-md-2 control-label"></label>
+                <label asp-for="Password" class="col-md-2 control-label welcome"></label>
                 <div class="col-md-10">
                     <input asp-for="Password" class="form-control" />
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="ConfirmPassword" class="col-md-2 control-label"></label>
+                <label asp-for="ConfirmPassword" class="col-md-2 control-label welcome"></label>
                 <div class="col-md-10">
                     <input asp-for="ConfirmPassword" class="form-control" />
                     <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
@@ -58,5 +63,6 @@
                 </div>
             </div>
         </form>
+      </div>
     </div>
 </div>

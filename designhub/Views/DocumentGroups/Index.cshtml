@@ -4,19 +4,20 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>@Model.Project.Name</h2>
+<h2 class="text-center page_header">@Model.Project.Name</h2>
+<p class="text-center page_info projects_info">This is where you can keep track of versions of your files. To see the different versions, simply click on a file. The most recent update will be on top.</p>
 
-<p>
+<p class="text-center">
     <a asp-action="Create" asp-route-id="@Model.Project.ProjectID" class="btn btn-default">Add Another File</a>  
-        
+    <a asp-controller="Projects" asp-action="Index" class="btn btn-default">Back To Projects List</a>      
 </p>
 <table class="table table-hover">
     <thead>
         <tr>
-                <th>
+                <th class="table_headers">
                    File Name
                 </th>
-                <th>
+                <th class="table_headers">
                    Date Created
                 </th>
             <th></th>
@@ -26,14 +27,14 @@
 @foreach (var item in Model.DocumentGroups)
 {
     <tr data-toggle="collapse" data-target=".@item.DocumentGroupID-accordian" class="accordion-toggle">
-        <td>
+        <td class="table_data">
             @Html.DisplayFor(modelItem => item.Name) 
         </td>
-        <td>
+        <td class="table_data">
             @Html.DisplayFor(modelItem => item.DateCreated)
         </td>
 
-        <td>
+        <td class="table_data">
             <a class="btn btn-default" asp-controller="Documents" asp-action="Create" asp-route-id="@item.DocumentGroupID"> Upload New Version</a> 
             <a class="btn btn-default" asp-action="Delete" asp-route-id="@item.DocumentGroupID">Delete</a> 
 
@@ -62,4 +63,4 @@
     </tbody>
 </table>
 
-<a asp-controller="Projects" asp-action="Index" class="btn btn-default">Back To Projects List</a>
+

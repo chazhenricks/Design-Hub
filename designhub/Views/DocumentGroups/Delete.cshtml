@@ -4,34 +4,24 @@
     ViewData["Title"] = "Delete";
 }
 
-<h2>Delete</h2>
+<h2 class="text-center page_header">Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3  class="text-center are_you_sure">Are you sure you want to delete this?</h3>
 <div>
-    <h4>DocumentGroup</h4>
+    <h4 class="text-center are_you_sure ">File @Model.DocumentGroup.Name and all of its versions will be lost.</h4>
     <hr />
-    <dl class="dl-horizontal">
+
         <input type="hidden" asp-for="@Model.DocumentGroup.DocumentGroupID" />
         <input type="hidden" asp-for="@Model.ProjectID" />
-        <dt>
-            @Html.DisplayNameFor(model => model.DocumentGroup.DateCreated)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DocumentGroup.DateCreated)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DocumentGroup.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DocumentGroup.Name)
-        </dd>
-    </dl>
+        <input type="hidden" asp-for="DocumentGroup.DateCreated" />
+        <input type="hidden" asp-for="DocumentGroup.Name" />
+
      
     <form asp-action="Delete">
-        <div class="form-actions no-color">
+        <div class="form-actions no-color text-center">
             <input type="hidden" value="@Model.ProjectID" asp-for="ProjectID" />
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            <a asp-action="Index" asp-route-id="@Model.ProjectID">Back to List</a>
+            <input type="submit" value="Yes I Understand" class="btn btn-default btn-lg" /> 
+            <a asp-action="Index" asp-route-id="@Model.ProjectID" class="btn btn-default btn-lg ">No Take Me Back</a>
         </div>
     </form>
 </div>

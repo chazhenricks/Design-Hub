@@ -5,9 +5,11 @@
     ViewData["Title"] = "EmptyProject";
 }
 
-<h2>This Project is empty</h2>
+<h2  class="text-center page_header">This Project is empty</h2>
 
-<p>It appears that this project doesnt contain any files.</p>
-<p>Click the button below to add some files. </p>
-<a class="btn btn-success" asp-action="Create" asp-route-id="@Model.ProjectID">Add Some Files</a>
-<a class="btn" asp-controller="Projects" asp-action="Index">Back To Projects</a>
+<p class="text-center page_info projects_info">It appears that this project doesnt contain any files.</pclass="text-center>
+<p class="text-center page_info projects_info">Click the button below to add some files. </p>
+<p class="text-center">
+    <a class="btn btn-lg btn-default" asp-action="Create" asp-route-id="@Model.ProjectID">Add Some Files</a>
+    <a class="btn btn-lg btn-default" asp-controller="Projects" asp-action="Index">Back To Projects</a>
+</p>

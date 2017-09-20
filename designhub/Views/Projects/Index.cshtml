@@ -30,13 +30,15 @@
                 @Html.DisplayFor(modelItem => item.DateCreated)
             </td>
             <td >
-                <a asp-action="Delete" asp-route-id="@item.ProjectID" class="btn btn-default">Remove Project</a>
+                <a asp-action="Delete" asp-route-id="@item.ProjectID" class="btn btn-lg btn-default">Remove Project</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
 
+
+<p class="text-center page_info projects_info projects_add_new">Adding a new project is easy! Just click this button.</pclass="text-center>
 <p class="text-center">
-    <a asp-action="Create" class="btn btn-default">Create New</a>
+    <a asp-action="Create" class="btn btn-lg btn-default">Create New Project</a>
 </p>

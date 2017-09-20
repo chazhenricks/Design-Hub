@@ -8,6 +8,13 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+.btn {
+    font-family: 'Roboto', sans-serif;
+    background-color: rgba(247, 247, 247, .9);
+}
+
+
+
 .logged_in {
     background-color: rgba(247, 247, 247, .9);
 }
@@ -16,6 +23,11 @@ body {
     color: orangered !important;
     font-size: 1.3em;
     font-weight: 100;
+}
+
+.are_you_sure {
+    font-size: 1.5em;
+    color: orangered;
 }
 
 /* Wrapping element */
@@ -42,6 +54,10 @@ body {
 .project_list {
     text-decoration: none;
     color: black;
+}
+
+.projects_add_new{
+    margin-top: 4em;
 }
 
 

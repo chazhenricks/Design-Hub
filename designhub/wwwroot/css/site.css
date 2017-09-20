@@ -22,7 +22,7 @@ body {
 .logo {
     color: orangered !important;
     font-size: 1.3em;
-    font-weight: 100;
+    font-weight: 300;
 }
 
 .are_you_sure {
@@ -95,7 +95,7 @@ body {
 /*landing page typography*/
 .page_info {
     font-size: 1.5em;
-    font-weight: 100;
+    font-weight: 400;
 }
 
 .create_account {

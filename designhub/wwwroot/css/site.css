@@ -35,6 +35,7 @@ body {
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    margin-bottom: 2em;
 }
 
 .table_headers{
@@ -113,4 +114,13 @@ hr {
 
 .projects_info {
     margin-bottom: 2em;
+}
+
+.github{
+    text-decoration: none;
+}
+.footer{
+    margin-top: 0;
+    margin-bottom:0;
+
 }

@@ -4,11 +4,11 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Add A New Project</h2>
+<h2  class="text-center page_header">Add A New Project</h2>
 
 <form asp-action="Create">
     <div class="form-horizontal">
-        <h4>Please name your project</h4>
+        <h4  class="text-center page_info projects_info">Please name your project</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
@@ -20,16 +20,14 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="text-center">
+                <input type="submit" value="Create" class="btn btn-lg btn-default" />
             </div>
         </div>
     </div>
 </form>
 
-<div>
-    <a asp-action="Index" class="btn btn-default">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

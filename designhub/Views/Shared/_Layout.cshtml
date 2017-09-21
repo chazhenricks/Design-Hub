@@ -50,10 +50,9 @@
         @RenderBody()
        
     </div>
-    <div class="container-fluid">
-        <footer class="footer">
-            <p class="text-center welcome welcome_intro">&copy; 2017 - Chaz Henricks | Visit me on <a href="https://github.com/chazhenricks" class="welcome">GitHub!</a></p>
-      
+    <div class="navbar  @(User.Identity.IsAuthenticated ? "navbar-default" : "navbar-inverse") navbar-fixed-bottom">
+        <footer class="containers">
+            <p class="text-center footer @(User.Identity.IsAuthenticated ? "page_info projects_info" : "welcome page_info")">&copy; 2017 - Chaz Henricks | Visit me on <a class="github" href="https://github.com/chazhenricks" class="welcome">GitHub!</a></p>
         </footer>
     </div>
 

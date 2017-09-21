@@ -4,10 +4,11 @@
     ViewData["Title"] = "Create";
 }
 
-<h2 class="text-center page_header">Upload New Version</h2>
+<h2 class="text-center page_header">Whoops</h2>
 
 <form asp-action="Create" enctype="multipart/form-data">
     <div class="form-horizontal">
+        <h4 class="text-center page_info projects_info">Looks like you forgot to attach a file.</h4>
         <h4 class="text-center page_info projects_info">Click Choose File to upload a new version</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -18,8 +19,8 @@
                 <input type="file" name="NewDocument" />
             </div>
         </div>
-        <input type="hidden" name="DocumentGroupID" value="@Model.DocumentGroupID"/>
-        
+        <input type="hidden" name="DocumentGroupID" value="@Model.DocumentGroupID" />
+
         <div class="form-group">
             <div class="text-center">
                 <input type="submit" value="Create" class="btn btn-lg btn-default" />

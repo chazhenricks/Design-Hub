@@ -19,6 +19,12 @@ namespace designhub.Controllers
             _context = context;    
         }
 
+        // *****************************
+        // *****************************
+        // Will Be Implemented in V2
+        // *****************************
+        // *****************************
+
         // GET: Comments
         public async Task<IActionResult> Index()
         {

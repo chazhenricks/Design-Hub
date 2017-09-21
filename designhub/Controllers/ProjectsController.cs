@@ -14,6 +14,12 @@ namespace designhub.Controllers
 {
     public class ProjectsController : Controller
     {
+        // *****************************
+        // *****************************
+        // CONTEXT SETUP
+        // *****************************
+        // *****************************
+
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
 
@@ -26,7 +32,14 @@ namespace designhub.Controllers
         // This task retrieves the currently authenticated user
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
+        // *****************************
+        // *****************************
+        // GET METHODS
+        // *****************************
+        // *****************************
+
         // GET: Projects
+        //Gets list of all projects that are associated with a given user
         public async Task<IActionResult> Index()
         {
             var user = await GetCurrentUserAsync();
@@ -75,13 +88,16 @@ namespace designhub.Controllers
         public async Task<IActionResult> Create(Project project)
         {
             
-
+            //adds current date and time to a created project
             project.DateCreated = DateTime.Now;
+            
 
+            //remvoves user from the modelstate validation
             ModelState.Remove("User");
 
             if (ModelState.IsValid)
             {
+                //if modelstate validates, add current user
                 var user = await GetCurrentUserAsync();
                project.User = user;
 
@@ -91,6 +107,7 @@ namespace designhub.Controllers
             }
             return View(project);
         }
+
 
         // GET: Projects/Edit/5
         public async Task<IActionResult> Edit(int? id)

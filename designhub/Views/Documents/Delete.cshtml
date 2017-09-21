@@ -1,41 +1,28 @@
-@model designhub.Models.Document
+@model designhub.Models.DocumentViewModels.DeleteDocumentViewModel
 
 @{
     ViewData["Title"] = "Delete";
 }
 
-<h2>Delete</h2>
+<h2 class="text-center page_header">Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3 class="text-center are_you_sure">Are you sure you want to delete this?</h3>
 <div>
-    <h4>Document</h4>
+    <h4  class="text-center are_you_sure ">This version will be permenantly deleted.</h4>
     <hr />
     <dl class="dl-horizontal">
-        <input type="hidden" asp-for="DocumentID" />
-        <dt>
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DateCreated)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DocumentPath)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DocumentPath)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DocumentGroup)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DocumentGroup.Name)
-        </dd>
-    </dl>
+        <input type="hidden" asp-for="Document.DocumentID" />
+        <input type="hidden" asp-for="Document.DateCreated" />
+        <input type="hidden" asp-for="Document.DocumentPath" />
+        <input type="hidden" asp-for="Document.DocumentGroup" />
+       
     
     <form asp-action="Delete">
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            <a asp-action="Index">Back to List</a>
+        <div class="form-actions no-color text-center">
+            <input type="submit" value="Yes I Understand" class="btn btn-lg btn-default" />
+            <a asp-action="Index" asp-controller="DocumentGroups" asp-route-id="@Model.ProjectID" class="btn btn-default btn-lg ">No Take Me Back</a>
+        </div>
+      
         </div>
     </form>
 </div>

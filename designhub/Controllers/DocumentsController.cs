@@ -16,6 +16,13 @@ namespace designhub.Controllers
 {
     public class DocumentsController : Controller
     {
+        // *****************************
+        // *****************************
+        // CONTEXT SETUP
+        // *****************************
+        // *****************************
+
+
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
 
@@ -28,8 +35,14 @@ namespace designhub.Controllers
         // This task retrieves the currently authenticated user
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
+        // *****************************
+        // *****************************
+        // GET METHODS
+        // *****************************
+        // *****************************
+
         // GET: Documents
-        //id is DocumentGroupID used to add a new document to a document group. 
+        //id is DocumentGroupID used to populate list of documents attached to a documentgroup
         public async Task<IActionResult> Index(int id)
         {
             DocumentListViewModel viewModel = new DocumentListViewModel();
@@ -136,7 +149,13 @@ namespace designhub.Controllers
             // not information posted in the form
 
             ModelState.Remove("Document.User");
+            if (viewModel.NewDocument == null)
+            {
+                var createDoc = new Document();
 
+                createDoc.DocumentGroupID = viewModel.DocumentGroupID;
+                return View("EmptyDocument", createDoc);
+            }
 
             if (ModelState.IsValid)
             {
@@ -248,7 +267,7 @@ namespace designhub.Controllers
         }
 
         // GET: Documents/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? id, int projectID)
         {
             if (id == null)
             {
@@ -262,8 +281,10 @@ namespace designhub.Controllers
             {
                 return NotFound();
             }
-
-            return View(document);
+            DeleteDocumentViewModel viewModel = new DeleteDocumentViewModel();
+            viewModel.Document = document;
+            viewModel.ProjectID = projectID;
+            return View(viewModel);
         }
 
         // POST: Documents/Delete/5

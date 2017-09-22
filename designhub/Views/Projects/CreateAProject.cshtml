@@ -3,8 +3,10 @@
     ViewData["Title"] = "CreateAProject";
 }
 
-<h2>It looks like you don't have any projects yet.</h2>
-<p> Thats ok. Creating a new project is really easy.</p>
-<p>Click the button below to get started.</p>
+<h2 class="text-center page_header">It looks like you don't have any projects yet.</h2>
+<p class="text-center page_info projects_info"> Thats ok. Creating a new project is really easy.</p>
+<p class="text-center page_info projects_info">Click the button below to get started.</p>
 
-<a class="btn btn-success" asp-action="Create">Create a Project</a>
+    <div class="text-center">
+        <a class="btn btn-lg btn-default" asp-action="Create">Create a Project</a>
+    </div>

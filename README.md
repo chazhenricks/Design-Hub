@@ -19,7 +19,7 @@ This app was built in Visual Studio 2017, and thus the instructions will be writ
   1. Under the `Workloads`tab, have "ASP.NET and Web Development" and ".NET Core cross-platform development" packages selected
   1. Under the `Individual Components` tab, make sure the ".NET Core Runtime" (Under `.Net` heading) and "Entity Framework 6 tools" (Under the SDK's, libraries and frameworks heading) are also selected and install
 1. Clone and download this repo into a local directory. 
-1. Upon startup, in the `Package Manager Console` (View -> Other Windows -> Package Manager Console) execute `add-migrations initial` and then `update database` - This will initialize everything for the first time on your machine.
+1. Upon startup, in the `Package Manager Console` (View -> Other Windows -> Package Manager Console) execute `Add-Migration initial` and then `Update-Database` - This will initialize everything for the first time on your machine.
 1. Press `Ctrl + F5` to run a build
 
 This should get you in a good place to be running locally on your machine. 
